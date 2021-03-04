@@ -21,3 +21,4 @@ gen/
 build/
 /captures
 .externalNativeBuild
+/iosApp/iosApp.xcodeproj/
