@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
+//    kotlin("native.cocoapods")
     id("com.android.library")
 }
 
@@ -21,21 +21,14 @@ android {
 kotlin {
     android()
     ios()
-//    {
-//        binaries {
-//            framework {
-//                baseName = "shared"
-//                export(project(":core-ui"))
-//                transitiveExport = true
-//            }
-//        }
-//    }
-
-    cocoapods {
-        summary = "Some description for a Kotlin/Native module"
-        homepage = "Link to a Kotlin/Native module homepage"
-        ios.deploymentTarget = "12.0"
-        frameworkName = "Shared"
+    {
+        binaries {
+            framework {
+                baseName = "shared"
+                export(project(":core-ui"))
+                transitiveExport = true
+            }
+        }
     }
 
     sourceSets {
@@ -67,17 +60,17 @@ kotlin {
 
 }
 
-//val packForXcode by tasks.creating(Sync::class) {
-//    group = "build"
-//    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-//    val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
-//    val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
-//    val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
-//    inputs.property("mode", mode)
-//    dependsOn(framework.linkTask)
-//    val targetDir = File(buildDir, "shared")
-//    from({ framework.outputDirectory })
-//    into(targetDir)
-//}
-//
-//tasks.getByName("build").dependsOn(packForXcode)
+val packForXcode by tasks.creating(Sync::class) {
+    group = "build"
+    val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
+    val sdkName = System.getenv("SDK_NAME") ?: "iphonesimulator"
+    val targetName = "ios" + if (sdkName.startsWith("iphoneos")) "Arm64" else "X64"
+    val framework = kotlin.targets.getByName<KotlinNativeTarget>(targetName).binaries.getFramework(mode)
+    inputs.property("mode", mode)
+    dependsOn(framework.linkTask)
+    val targetDir = File(buildDir, "shared")
+    from({ framework.outputDirectory })
+    into(targetDir)
+}
+
+tasks.getByName("build").dependsOn(packForXcode)

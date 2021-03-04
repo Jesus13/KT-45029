@@ -1,5 +1,5 @@
 import SwiftUI
-import Shared
+import shared
 
 func greet() -> String {
     return Greeting(truck:TruckImpl()).greeting()
