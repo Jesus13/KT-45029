@@ -1,9 +1,8 @@
 import SwiftUI
 import Shared
-import CoreUi
 
 func greet() -> String {
-    return Greeting(truck:TruckImpl() as! Core_uiTruck).greeting()
+    return Greeting(truck:TruckImpl()).greeting()
 }
 
 struct ContentView: View {

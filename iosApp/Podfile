@@ -6,7 +6,6 @@ inhibit_all_warnings!
 
 def kotlin_pods
     pod 'shared', :path => "../shared"
-    pod 'core_ui', :path => "../core-ui"
 end
 
 target 'iosApp' do
