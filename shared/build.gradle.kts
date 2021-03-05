@@ -2,12 +2,8 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 
 plugins {
     kotlin("multiplatform")
-//    kotlin("native.cocoapods")
     id("com.android.library")
 }
-
-// CocoaPods requires the podspec to have a version.
-version = "1.0"
 
 android {
     compileSdkVersion(29)
@@ -20,8 +16,7 @@ android {
 
 kotlin {
     android()
-    ios()
-    {
+    ios {
         binaries {
             framework {
                 baseName = "shared"
