@@ -26,11 +26,19 @@ kotlin {
         homepage = "Link to a Kotlin/Native module homepage"
         ios.deploymentTarget = "12.0"
         frameworkName = "Shared"
+        targets.withType<KotlinNativeTarget> {
+            binaries.withType<org.jetbrains.kotlin.gradle.plugin.mpp.Framework> {
+                export(project(":core-ui"))
+                transitiveExport = true
+                isStatic = false
+            }
+        }
     }
+
     sourceSets {
         val commonMain by getting {
             dependencies {
-               api(project(":core-ui"))
+                api(project(":core-ui"))
             }
         }
         val commonTest by getting {
@@ -53,5 +61,4 @@ kotlin {
         val iosMain by getting
         val iosTest by getting
     }
-
 }

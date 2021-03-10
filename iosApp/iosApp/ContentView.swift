@@ -1,5 +1,6 @@
 import SwiftUI
 import Shared
+import CoreUi
 
 func greet() -> String {
     return Greeting(truck:TruckImpl()).greeting()
@@ -19,7 +20,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-class TruckImpl: Truck {
+class TruckImpl: CoreUi.Truck {
     func getName() -> String {
         return "ios truck"
     }

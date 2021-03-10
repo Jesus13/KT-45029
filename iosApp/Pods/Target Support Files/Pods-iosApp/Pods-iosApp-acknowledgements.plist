@@ -18,6 +18,16 @@
 			<key>License</key>
 			<string></string>
 			<key>Title</key>
+			<string>core_ui</string>
+			<key>Type</key>
+			<string>PSGroupSpecifier</string>
+		</dict>
+		<dict>
+			<key>FooterText</key>
+			<string></string>
+			<key>License</key>
+			<string></string>
+			<key>Title</key>
 			<string>shared</string>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
